@@ -12,7 +12,8 @@ import {
   query,
 } from "firebase/firestore";
 import { app } from "../firebase"; // Adjust the path as necessary
-import { Post } from "./Post";
+import Post from "./Post";
+
 
 
 export default function Feed() {
