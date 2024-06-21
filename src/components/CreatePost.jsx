@@ -20,6 +20,8 @@ import {
 const CreatePost = () => {
   const [imageFileURL, setImageFileURL] = useState(null);
   const [selectedFile, setSelectedFile] = useState(null);
+  const [postLoading, setPostLoading] = useState(false);
+  const [caption, setCaption] = useState("");
   const [imageFileUploading, setImageFileUploading] = useState(false);
   const imagePickRef = useRef();
   const db = getFirestore(app);
@@ -33,13 +35,15 @@ const CreatePost = () => {
     }
   };
 
+  console.log(caption);
+
   useEffect(() => {
     if (selectedFile) {
       uploadImageToStorage();
     }
   }, [selectedFile]);
 
-  uploadImageToStorage = () => {
+  const uploadImageToStorage = () => {
     setImageFileUploading(true);
     const storage = getStorage(app);
     const fileName = new Date().getTime() + "-" + selectedFile.name;
@@ -67,10 +71,31 @@ const CreatePost = () => {
     );
   };
 
+  const handleSubmit = async () => {
+    setPostLoading(true);
+    const docRef = await addDoc(collection(db, "posts"), {
+      caption,
+      image: imageFileURL,
+      timestamp: serverTimestamp(),
+    });
+    setPostLoading(false);
+    setCaption("");
+    setImageFileURL(null);
+    setSelectedFile(null);
+    location.reload();
+  };
+
   return (
     <div>
       <div>
-        <textarea name="" placeholder="Whats Up?" rows="2" id=""></textarea>
+        <textarea
+          name=""
+          placeholder="Whats Up?"
+          rows="2"
+          value={caption}
+          onChange={(e) => setCaption(e.target.value)}
+          id=""
+        ></textarea>
       </div>
       {selectedFile && (
         <img
@@ -92,7 +117,11 @@ const CreatePost = () => {
           onChange={addImageToPost}
           hidden
         />
-        <button className="bg-blue-400 text-white px-4 py-1.5 rounded-full font-bold shadow-md hover:brightness-95 disabled:opacity-50">
+        <button
+          disabled={caption.trim() === "" || postLoading || imageFileUploading}
+          className="bg-blue-400 text-white px-4 py-1.5 rounded-full font-bold shadow-md hover:brightness-95 disabled:opacity-50"
+          onClick={handleSubmit}
+        >
           Post
         </button>
       </div>
