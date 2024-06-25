@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   addDoc,
   collection,
@@ -86,7 +86,7 @@ const CreatePost = () => {
   };
 
   return (
-    <div>
+    <div className="flex m-5">
       <div>
         <textarea
           name=""
@@ -105,9 +105,9 @@ const CreatePost = () => {
             ${imageFileUploading ? "animate-pulse" : ""}`}
         />
       )}
-      <div>
+      <div className="flex">
         <FaFileImage
-          className="h-10 w-10 p-2 text-sky-500 hover:bg-sky-100 rounded-full cursor-pointer"
+          className="h-10 w-10  m-auto  p-2 text-sky-500 hover:bg-sky-100 rounded-full cursor-pointer"
           onClick={() => imagePickRef.current.click()}
         />
         <input
@@ -119,7 +119,7 @@ const CreatePost = () => {
         />
         <button
           disabled={caption.trim() === "" || postLoading || imageFileUploading}
-          className="bg-blue-400 text-white px-4 py-1.5 rounded-full font-bold shadow-md hover:brightness-95 disabled:opacity-50"
+          className="bg-blue-400 text-white m-auto px-4 h-[30px] rounded-full font-bold shadow-md hover:brightness-95 disabled:opacity-50"
           onClick={handleSubmit}
         >
           Post

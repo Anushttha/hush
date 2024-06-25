@@ -1,8 +1,9 @@
+import Link from 'next/link'
 import React from 'react'
 
 const Header = () => {
   return (
-    <div className='text-4xl font-extrabold'> Hush.</div>
+    <Link href={"/"} className='text-4xl font-extrabold'> Hush.</Link>
   )
 }
 
