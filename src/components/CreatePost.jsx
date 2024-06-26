@@ -86,8 +86,8 @@ const CreatePost = () => {
   };
 
   return (
-    <div className="flex m-5">
-      <div>
+<div className="flex m-5 w-[95%] sm:w-1/2 sm:m-5">
+      <div  className="w-full">
         <textarea
           name=""
           placeholder="Whats Up?"
@@ -95,6 +95,7 @@ const CreatePost = () => {
           value={caption}
           onChange={(e) => setCaption(e.target.value)}
           id=""
+          className="w-full"
         ></textarea>
       </div>
       {selectedFile && (
@@ -107,7 +108,7 @@ const CreatePost = () => {
       )}
       <div className="flex">
         <FaFileImage
-          className="h-10 w-10  m-auto  p-2 text-sky-500 hover:bg-sky-100 rounded-full cursor-pointer"
+          className="h-10 w-10  m-auto  p-2 text-primary hover:bg-sky-100 rounded-full cursor-pointer"
           onClick={() => imagePickRef.current.click()}
         />
         <input
@@ -119,7 +120,7 @@ const CreatePost = () => {
         />
         <button
           disabled={caption.trim() === "" || postLoading || imageFileUploading}
-          className="bg-blue-400 text-white m-auto px-4 h-[30px] rounded-full font-bold shadow-md hover:brightness-95 disabled:opacity-50"
+          className="bg-primary text-white m-auto px-4 h-[30px] rounded-full font-bold shadow-md hover:brightness-95 disabled:opacity-50"
           onClick={handleSubmit}
         >
           Post

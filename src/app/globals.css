@@ -1,3 +1,109 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+@font-face {
+    font-family: 'Neue Plak Wide';
+    src: url('/fonts/NeuePlak-WideBold.eot');
+    src: local('Neue Plak Wide Bold'), local('NeuePlak-WideBold'),
+        url('/fonts/NeuePlak-WideBold.eot?#iefix') format('embedded-opentype'),
+        url('/fonts/NeuePlak-WideBold.woff2') format('woff2'),
+        url('/fonts/NeuePlak-WideBold.woff') format('woff'),
+        url('/fonts/NeuePlak-WideBold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Neue Plak Wide Extra';
+    src: url('/fonts/NeuePlak-WideExtraBlack.eot');
+    src: local('Neue Plak Wide Extra Black'), local('NeuePlak-WideExtraBlack'),
+        url('/fonts/NeuePlak-WideExtraBlack.eot?#iefix') format('embedded-opentype'),
+        url('/fonts/NeuePlak-WideExtraBlack.woff2') format('woff2'),
+        url('/fonts/NeuePlak-WideExtraBlack.woff') format('woff'),
+        url('/fonts/NeuePlak-WideExtraBlack.ttf') format('truetype');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Neue Plak Wide';
+    src: url('/fonts/NeuePlak-WideRegular.eot');
+    src: local('Neue Plak Wide'), local('NeuePlak-WideRegular'),
+        url('/fonts/NeuePlak-WideRegular.eot?#iefix') format('embedded-opentype'),
+        url('/fonts/NeuePlak-WideRegular.woff2') format('woff2'),
+        url('/fonts/NeuePlak-WideRegular.woff') format('woff'),
+        url('/fonts/NeuePlak-WideRegular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Neue Plak Wide Semi';
+    src: url('/fonts/NeuePlak-WideSemiBold.eot');
+    src: local('Neue Plak Wide Semi Bold'), local('NeuePlak-WideSemiBold'),
+        url('/fonts/NeuePlak-WideSemiBold.eot?#iefix') format('embedded-opentype'),
+        url('/fonts/NeuePlak-WideSemiBold.woff2') format('woff2'),
+        url('/fonts/NeuePlak-WideSemiBold.woff') format('woff'),
+        url('/fonts/NeuePlak-WideSemiBold.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Neue Plak Wide';
+    src: url('/fonts/NeuePlak-WideLight.eot');
+    src: local('Neue Plak Wide Light'), local('NeuePlak-WideLight'),
+        url('/fonts/NeuePlak-WideLight.eot?#iefix') format('embedded-opentype'),
+        url('/fonts/NeuePlak-WideLight.woff2') format('woff2'),
+        url('/fonts/NeuePlak-WideLight.woff') format('woff'),
+        url('/fonts/NeuePlak-WideLight.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Neue Plak Wide Ultra';
+    src: url('/fonts/NeuePlak-WideUltraLight.eot');
+    src: local('Neue Plak Wide Ultra Light'), local('NeuePlak-WideUltraLight'),
+        url('/fonts/NeuePlak-WideUltraLight.eot?#iefix') format('embedded-opentype'),
+        url('/fonts/NeuePlak-WideUltraLight.woff2') format('woff2'),
+        url('/fonts/NeuePlak-WideUltraLight.woff') format('woff'),
+        url('/fonts/NeuePlak-WideUltraLight.ttf') format('truetype');
+    font-weight: 200;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Neue Plak Wide';
+    src: url('/fonts/NeuePlak-WideThin.eot');
+    src: local('Neue Plak Wide Thin'), local('NeuePlak-WideThin'),
+        url('/fonts/NeuePlak-WideThin.eot?#iefix') format('embedded-opentype'),
+        url('/fonts/NeuePlak-WideThin.woff2') format('woff2'),
+        url('/fonts/NeuePlak-WideThin.woff') format('woff'),
+        url('/fonts/NeuePlak-WideThin.ttf') format('truetype');
+    font-weight: 100;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Neue Plak Wide';
+    src: url('/fonts/NeuePlak-WideBlack.eot');
+    src: local('Neue Plak Wide Black'), local('NeuePlak-WideBlack'),
+        url('/fonts/NeuePlak-WideBlack.eot?#iefix') format('embedded-opentype'),
+        url('/fonts/NeuePlak-WideBlack.woff2') format('woff2'),
+        url('/fonts/NeuePlak-WideBlack.woff') format('woff'),
+        url('/fonts/NeuePlak-WideBlack.ttf') format('truetype');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+

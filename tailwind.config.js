@@ -7,12 +7,27 @@ module.exports = {
   ],
   theme: {
     extend: {
-      backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+      colors: {
+        primary: '#A5ACE1', // Example primary color
+        secondary: '#ffed4a',
+        midnight: '#191A22',
+        subtle:'#22232E',
+        
+        // Example secondary color
+        // You can add more custom colors here
+      },
+      fontFamily: {
+        'neue': ['"Neue Plak Wide"', 'sans-serif'],
+        'neue-bold': ['"Neue Plak Wide Bold"', 'sans-serif'],
+        'neue-extra': ['"Neue Plak Wide Extra"', 'sans-serif'],
+        'neue-semi': ['"Neue Plak Wide Semi"', 'sans-serif'],
+        'neue-light': ['"Neue Plak Wide Light"', 'sans-serif'],
+        'neue-ultra': ['"Neue Plak Wide Ultra"', 'sans-serif'],
+        'neue-thin': ['"Neue Plak Wide Thin"', 'sans-serif'],
+        'neue-black': ['"Neue Plak Wide Black"', 'sans-serif'],
       },
     },
   },
   plugins: [],
+  darkMode: "class",
 };

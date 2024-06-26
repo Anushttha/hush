@@ -35,10 +35,13 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${inter.className} flex-col flex items-center `}>
-        
-        <Header />
+      <body className={`font-neue  dark`}>
+        <div className=" flex-col flex items-center dark:bg-midnight">
+           <Header />
         {children}
+        </div>
+        
+       
 
       </body>
     </html>

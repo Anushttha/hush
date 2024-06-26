@@ -62,7 +62,7 @@ export default function CreateComment({ postId }) {
   return (
     <div className="flex items-center">
       <HiOutlineChat
-        className="h-8 w-8 cursor-pointer rounded-full  transition duration-500 ease-in-out p-2 hover:text-sky-500 hover:bg-sky-100"
+        className="h-8 w-8 text-[#898FBB]  cursor-pointer rounded-full  transition duration-500 ease-in-out p-2 hover:text-midnight hover:bg-primary"
         onClick={() => {
           setOpen(!open);
         }}
