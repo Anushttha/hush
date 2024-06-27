@@ -5,9 +5,9 @@ import { RecoilRoot } from 'recoil';
 
 const SessionWrapper = ({ children }) => {
   return (
-   
-      <RecoilRoot>{children}</RecoilRoot>
-   
+
+    <RecoilRoot>{children}</RecoilRoot>
+
   );
 };
 
