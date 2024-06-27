@@ -5,7 +5,6 @@ import {
   collection,
   getFirestore,
   serverTimestamp,
-  snapshotEqual,
 } from "firebase/firestore";
 import { FaFileImage } from "react-icons/fa6";
 
@@ -20,35 +19,65 @@ import {
 const CreatePost = () => {
   const [imageFileURL, setImageFileURL] = useState(null);
   const [selectedFile, setSelectedFile] = useState(null);
+  const [compressedFile, setCompressedFile] = useState(null);
   const [postLoading, setPostLoading] = useState(false);
   const [caption, setCaption] = useState("");
   const [imageFileUploading, setImageFileUploading] = useState(false);
   const imagePickRef = useRef();
   const db = getFirestore(app);
 
+  // Compress image
+  const compressImage = (file, callback) => {
+    const img = document.createElement("img");
+    const reader = new FileReader();
+    
+    reader.onload = (e) => {
+      img.src = e.target.result;
+    };
+    
+    img.onload = () => {
+      const canvas = document.createElement("canvas");
+      const MAX_WIDTH = 400;
+      
+      const scaleSize = MAX_WIDTH / img.width;
+      canvas.width = MAX_WIDTH;
+      canvas.height = img.height * scaleSize;
+      
+      const ctx = canvas.getContext("2d");
+      ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+      
+      canvas.toBlob((blob) => {
+        callback(blob);
+      }, "image/jpeg");
+    };
+    
+    reader.readAsDataURL(file);
+  };
+
   // showing selected image to user
   const addImageToPost = (e) => {
     const file = e.target.files[0];
     if (file) {
-      setSelectedFile(file);
-      setImageFileURL(URL.createObjectURL(file));
+      compressImage(file, (compressed) => {
+        setSelectedFile(file);
+        setCompressedFile(compressed);
+        setImageFileURL(URL.createObjectURL(compressed));
+      });
     }
   };
 
-  console.log(caption);
-
   useEffect(() => {
-    if (selectedFile) {
+    if (compressedFile) {
       uploadImageToStorage();
     }
-  }, [selectedFile]);
+  }, [compressedFile]);
 
   const uploadImageToStorage = () => {
     setImageFileUploading(true);
     const storage = getStorage(app);
     const fileName = new Date().getTime() + "-" + selectedFile.name;
     const storageRef = ref(storage, fileName);
-    const uploadTask = uploadBytesResumable(storageRef, selectedFile);
+    const uploadTask = uploadBytesResumable(storageRef, compressedFile);
     uploadTask.on(
       "state_changed",
       (snapshot) => {
@@ -86,8 +115,8 @@ const CreatePost = () => {
   };
 
   return (
-<div className="flex m-5 w-[95%] sm:w-1/2 sm:m-5">
-      <div  className="w-full">
+    <div className="flex m-5 w-[95%] sm:w-1/2 sm:m-5">
+      <div className="w-full">
         <textarea
           name=""
           placeholder="Whats Up?"
