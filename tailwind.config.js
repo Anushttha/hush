@@ -12,6 +12,7 @@ module.exports = {
         secondary: '#ffed4a',
         midnight: '#191A22',
         subtle:'#22232E',
+        light: "#fbfbfb",
         
         // Example secondary color
         // You can add more custom colors here

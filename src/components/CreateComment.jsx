@@ -60,18 +60,17 @@ export default function CreateComment({ postId }) {
   };
 
   return (
-    <div className="flex items-center">
-      <HiOutlineChat
-        className="h-8 w-8 text-[#898FBB]  cursor-pointer rounded-full  transition duration-500 ease-in-out p-2 hover:text-midnight hover:bg-primary"
-        onClick={() => {
-          setOpen(!open);
-        }}
+    <div className="flex-col ">
+      <div className="flex items-center ">
+           <HiOutlineChat
+        className="h-8 w-8 text-[#898FBB] cursor-pointer rounded-full transition duration-500 ease-in-out p-2 hover:text-midnight hover:bg-primary"
+        onClick={() => setOpen(!open)}
       />
-      {comments.length > 0 && (
-        <span className="text-xs">{comments.length}</span>
-      )}
-      {open && (
-        <form className="flex gap-12" onSubmit={submitHandle}>
+      {comments.length > 0 && <span className="text-xs text-light">{comments.length}</span>}
+      </div>
+   
+      {open && ( <div className=" ">
+        <form className="flex gap-1 " onSubmit={submitHandle}>
           <input
             type="text"
             placeholder="Add a comment..."
@@ -79,16 +78,18 @@ export default function CreateComment({ postId }) {
             value={comment}
             onChange={changeHandle}
             required
-            className="p-1"
+            className="p-1 "
           />
           <button
             type="submit"
             disabled={loading}
-            className="text-secondary-blue"
+            className="bg-blue-500 text-light px-4 py-1 rounded hover:bg-blue-600"
           >
             {loading ? "Posting..." : "Post"}
           </button>
         </form>
+      </div>
+        
       )}
     </div>
   );
