@@ -14,7 +14,7 @@ export default function Post({ post, id, comments }) {
       <Link href={`/posts/${id}`}>
         <img src={post?.image} className="rounded-2xl w-[100%]  mr-2" />
       </Link>
-      <div className="flex flex-col justify-between">
+      <div className="flex  justify-between">
         <Link href={`/posts/${id}`}>
           <p className="text-gray-800 text-sm my-3 dark:text-light">
             {post?.caption}

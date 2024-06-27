@@ -12,10 +12,10 @@ export default async function PostPage({ params }) {
   data = { ...querySnapshot.data(), id: querySnapshot.id };
 
   return (
-    <div className='  w-full h-screen  text-light'>
-      <div className='flex items-center space-x-2 py-2 px-3 sticky top-0 z-50 border-b border-light'>
-        <Link href={'/'} className='hover:bg-light hover:text-midnight rounded-full p-2'>
-          <HiArrowLeft className='h-5 w-5' />
+    <div className='  w-full sm:w-1/2 bg-midnight  text-black '>
+      <div className='flex text-light items-center space-x-2 py-2 px-3 sticky top-0 z-50 border-b border-light'>
+        <Link href={'/'} className='hover:bg-light  hover:text-midnight rounded-full p-2'>
+          <HiArrowLeft className='h-5 w-5  ' />
         </Link>
         <h2 className='sm:text-lg'>Back</h2>
       </div>
