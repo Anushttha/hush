@@ -7,6 +7,7 @@ console.log('Firebase Config:', {
   appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
   measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID,
 });
+console.log( process.env.NEXT_PUBLIC_FIREBASE_API_KEY)
 
 import { getApp, getApps, initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
