@@ -62,14 +62,14 @@ export default function CreateComment({ postId }) {
   return (
     <div className="flex-col ">
       <div className="flex items-center ">
-           <HiOutlineChat
-        className="h-8 w-8 text-[#898FBB] cursor-pointer rounded-full transition duration-500 ease-in-out p-2 hover:text-midnight hover:bg-primary"
-        onClick={() => setOpen(!open)}
-      />
-      {comments.length > 0 && <span className="text-xs text-light">{comments.length}</span>}
+        <HiOutlineChat
+          className="h-8 w-8 text-[#898FBB] cursor-pointer rounded-full transition duration-500 ease-in-out p-2 hover:text-midnight hover:bg-primary"
+          onClick={() => setOpen(!open)}
+        />
+        {comments.length > 0 && <span className="text-xs text-light">{comments.length}</span>}
       </div>
-   
-      {open && ( <div className=" ">
+
+      {open && (<div className=" ">
         <form className="flex gap-1 " onSubmit={submitHandle}>
           <input
             type="text"
@@ -89,7 +89,7 @@ export default function CreateComment({ postId }) {
           </button>
         </form>
       </div>
-        
+
       )}
     </div>
   );

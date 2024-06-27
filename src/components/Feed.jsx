@@ -50,7 +50,7 @@ export default function Feed() {
   return (
     <div className="mx-auto flex flex-col w-screen flex-wrap items-center ">
       {data.map((post) => (
-       <div className='flex-col w-[95%] sm:w-1/2 p-3 border-b-2 border-subtle hover:bg-subtle' key={post.id}>
+        <div className='flex-col w-[95%] sm:w-1/2 p-3 border-b-2 border-subtle hover:bg-subtle' key={post.id}>
 
           <Post post={post} id={post.id} comments={post.comments} />
         </div>

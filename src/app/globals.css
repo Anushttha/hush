@@ -11,6 +11,7 @@
         url('/fonts/NeuePlak-WideBold.woff2') format('woff2'),
         url('/fonts/NeuePlak-WideBold.woff') format('woff'),
         url('/fonts/NeuePlak-WideBold.ttf') format('truetype');
+        
     font-weight: bold;
     font-style: normal;
     font-display: swap;
@@ -24,6 +25,7 @@
         url('/fonts/NeuePlak-WideExtraBlack.woff2') format('woff2'),
         url('/fonts/NeuePlak-WideExtraBlack.woff') format('woff'),
         url('/fonts/NeuePlak-WideExtraBlack.ttf') format('truetype');
+
     font-weight: 900;
     font-style: normal;
     font-display: swap;
@@ -37,6 +39,7 @@
         url('/fonts/NeuePlak-WideRegular.woff2') format('woff2'),
         url('/fonts/NeuePlak-WideRegular.woff') format('woff'),
         url('/fonts/NeuePlak-WideRegular.ttf') format('truetype');
+
     font-weight: normal;
     font-style: normal;
     font-display: swap;
@@ -50,6 +53,7 @@
         url('/fonts/NeuePlak-WideSemiBold.woff2') format('woff2'),
         url('/fonts/NeuePlak-WideSemiBold.woff') format('woff'),
         url('/fonts/NeuePlak-WideSemiBold.ttf') format('truetype');
+
     font-weight: 600;
     font-style: normal;
     font-display: swap;
@@ -63,6 +67,7 @@
         url('/fonts/NeuePlak-WideLight.woff2') format('woff2'),
         url('/fonts/NeuePlak-WideLight.woff') format('woff'),
         url('/fonts/NeuePlak-WideLight.ttf') format('truetype');
+
     font-weight: 300;
     font-style: normal;
     font-display: swap;
@@ -76,6 +81,7 @@
         url('/fonts/NeuePlak-WideUltraLight.woff2') format('woff2'),
         url('/fonts/NeuePlak-WideUltraLight.woff') format('woff'),
         url('/fonts/NeuePlak-WideUltraLight.ttf') format('truetype');
+
     font-weight: 200;
     font-style: normal;
     font-display: swap;
@@ -89,6 +95,7 @@
         url('/fonts/NeuePlak-WideThin.woff2') format('woff2'),
         url('/fonts/NeuePlak-WideThin.woff') format('woff'),
         url('/fonts/NeuePlak-WideThin.ttf') format('truetype');
+
     font-weight: 100;
     font-style: normal;
     font-display: swap;
@@ -102,8 +109,8 @@
         url('/fonts/NeuePlak-WideBlack.woff2') format('woff2'),
         url('/fonts/NeuePlak-WideBlack.woff') format('woff'),
         url('/fonts/NeuePlak-WideBlack.ttf') format('truetype');
+
     font-weight: 900;
     font-style: normal;
     font-display: swap;
 }
-

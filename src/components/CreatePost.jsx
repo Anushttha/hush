@@ -30,27 +30,27 @@ const CreatePost = () => {
   const compressImage = (file, callback) => {
     const img = document.createElement("img");
     const reader = new FileReader();
-    
+
     reader.onload = (e) => {
       img.src = e.target.result;
     };
-    
+
     img.onload = () => {
       const canvas = document.createElement("canvas");
       const MAX_WIDTH = 400;
-      
+
       const scaleSize = MAX_WIDTH / img.width;
       canvas.width = MAX_WIDTH;
       canvas.height = img.height * scaleSize;
-      
+
       const ctx = canvas.getContext("2d");
       ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-      
+
       canvas.toBlob((blob) => {
         callback(blob);
       }, "image/jpeg");
     };
-    
+
     reader.readAsDataURL(file);
   };
 
@@ -115,48 +115,49 @@ const CreatePost = () => {
   };
 
   return (
-    <div className="flex m-5 w-[95%] sm:w-1/2 sm:m-5">
-      <div className="w-full">
+    <div className="flex flex-col m-5 w-[95%] sm:w-1/2 sm:m-5">
+      <div className="w-full mb-4 flex items-center">
         <textarea
-          name=""
           placeholder="Whats Up?"
           rows="2"
           value={caption}
           onChange={(e) => setCaption(e.target.value)}
-          id=""
-          className="w-full"
+          className="w-full pt-4 px-4 py-0.1 text-l  resize-flex rounded focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-50"
         ></textarea>
+        <div className="flex ml-2">
+          <FaFileImage
+            className="h-10 w-10 p-2 text-primary hover:bg-sky-100 rounded-full cursor-pointer"
+            onClick={() => imagePickRef.current.click()}
+          />
+          <input
+            type="file"
+            accept="image/*"
+            ref={imagePickRef}
+            onChange={addImageToPost}
+            hidden
+          />
+          <button
+            disabled={caption.trim() === "" || postLoading || imageFileUploading}
+            className="bg-primary text-midnight ml-2 px-4 h-[30px] rounded-full font-bold shadow-md hover:brightness-95 disabled:opacity-50 disabled:text-light"
+            onClick={handleSubmit}
+          >
+            Post
+          </button>
+        </div>
       </div>
       {selectedFile && (
-        <img
-          src={imageFileURL}
-          alt={selectedFile}
-          className={`w-full max-h-[250px] object-cover cursor-pointer
-            ${imageFileUploading ? "animate-pulse" : ""}`}
-        />
+        <div className="w-full mt-4 mb-4">
+          <img
+            src={imageFileURL}
+            alt={selectedFile}
+            className={`w-full max-h-[250px] object-cover cursor-pointer
+          ${imageFileUploading ? "animate-pulse" : ""}`}
+          />
+        </div>
       )}
-      <div className="flex">
-        <FaFileImage
-          className="h-10 w-10  m-auto  p-2 text-primary hover:bg-sky-100 rounded-full cursor-pointer"
-          onClick={() => imagePickRef.current.click()}
-        />
-        <input
-          type="file"
-          accept="image/*"
-          ref={imagePickRef}
-          onChange={addImageToPost}
-          hidden
-        />
-        <button
-          disabled={caption.trim() === "" || postLoading || imageFileUploading}
-          className="bg-primary text-midnight m-auto px-4 h-[30px] rounded-full font-bold shadow-md hover:brightness-95 disabled:opacity-50 disabled:text-light"
-          onClick={handleSubmit}
-        >
-          Post
-        </button>
-      </div>
     </div>
   );
+
 };
 
 export default CreatePost;
