@@ -18,15 +18,15 @@ export const metadata = {
   ],
   category: "Social Networking",
   keywords: [
-    "anonymous", 
-    "secrets", 
-    "confessions", 
-    "university", 
-    "college", 
-    "campus", 
-    "social", 
-    "community", 
-    "private", 
+    "anonymous",
+    "secrets",
+    "confessions",
+    "university",
+    "college",
+    "campus",
+    "social",
+    "community",
+    "private",
     "safe"
   ],
   ageRating: "17+"
@@ -37,12 +37,9 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={`font-neue   dark`}>
         <div className=" flex-col flex items-center dark:bg-midnight">
-           <Header />
-        {children}
+          <Header />
+          {children}
         </div>
-        
-       
-
       </body>
     </html>
   );

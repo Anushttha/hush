@@ -26,9 +26,9 @@ export default function Comment({ comment, commentId, originalPostId }) {
 
 
 
-        <p className='text-light text-xs my-3'> - {comment?.comment}</p>
-     
-      
+      <p className='text-light text-xs my-3'> - {comment?.comment}</p>
+
+
     </div>
   );
 }
