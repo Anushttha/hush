@@ -22,7 +22,7 @@ export default function Comment({ comment, commentId, originalPostId }) {
 
 
   return (
-    <div className='flex p-3 border-b border-subtle hover:bg-subtle pl-10'>
+    <div className='flex p-4 border-b border-subtle hover:bg-subtle pl-10'>
 
 
 
