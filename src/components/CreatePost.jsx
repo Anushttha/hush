@@ -138,9 +138,9 @@ const CreatePost = () => {
           />
           <button
             disabled={caption.trim() === "" || postLoading || imageFileUploading}
-            className="bg-primary text-midnight ml-2 px-4 h-[30px] rounded-full font-bold shadow-md hover:brightness-95 disabled:opacity-50 disabled:text-light"
+            className="bg-primary text-midnight ml-2 px-4 h-[35px] rounded-full font-bold shadow-md hover:brightness-95 disabled:opacity-50 disabled:text-light mt-1 flex items-center justify-center"
             onClick={handleSubmit}
-          >
+            >
             Post
           </button>
         </div>
