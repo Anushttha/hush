@@ -1,9 +1,13 @@
+'use client'
+
 import { app } from '../../../firebase';
 import { doc, getDoc, getFirestore } from 'firebase/firestore';
 import { HiArrowLeft } from 'react-icons/hi';
 import Link from 'next/link';
 import Post from '@/components/Post';
 import Comments from '@/components/Comments';
+
+
 
 export default async function PostPage({ params }) {
   const db = getFirestore(app);
