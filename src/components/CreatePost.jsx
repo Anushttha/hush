@@ -140,7 +140,7 @@ const CreatePost = () => {
     setCaption("");
     setImageFileURL(null);
     setSelectedFile(null);
-  
+    location.reload();
   };
 
   return (
