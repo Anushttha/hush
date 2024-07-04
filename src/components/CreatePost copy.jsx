@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import {
   addDoc,
   collection,
+  getDocs,
   getFirestore,
   serverTimestamp,
 } from "firebase/firestore";
@@ -14,6 +15,16 @@ import {
   uploadBytesResumable,
   getDownloadURL,
 } from "firebase/storage";
+import admin from "firebase-admin";
+
+const serviceAccount = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT_KEY);
+
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
+  databaseURL:
+    "https://hush-df0a6-default-rtdb.asia-southeast1.firebasedatabase.app",
+});
+console.log("Firebase Admin SDK initialized.");
 
 const CreatePost = () => {
   const [imageFileURL, setImageFileURL] = useState(null);
@@ -101,22 +112,25 @@ const CreatePost = () => {
 
   const sendNotification = async (post) => {
     try {
-      const response = await fetch('/api/sendNotification', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(post),
-      });
-
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
+      const tokensSnapshot = await getDocs(collection(db, "fcmTokens"));
+      if (tokensSnapshot.empty) {
+        console.log("No FCM tokens found.");
+        return;
       }
 
-      const data = await response.json();
-      console.log('Notification sent successfully:', data);
+      const tokens = tokensSnapshot.docs.map((doc) => doc.data().token);
+      const message = {
+        notification: {
+          title: "New Post Added",
+          body: `A new post was added: ${post.caption}`,
+        },
+        tokens: tokens,
+      };
+
+      const response = await admin.messaging().sendMulticast(message);
+      console.log("Notification sent successfully:", response);
     } catch (error) {
-      console.error('Error sending notification:', error);
+      console.error("Error sending notification:", error);
     }
   };
 
@@ -134,13 +148,11 @@ const CreatePost = () => {
     };
     
     sendNotification(newPost);
-    console.log(newPost)
     setPostLoading(false);
-    console.log(setPostLoading)
     setCaption("");
     setImageFileURL(null);
     setSelectedFile(null);
-  
+    location.reload();
   };
 
   return (

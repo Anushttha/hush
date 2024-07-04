@@ -1,3 +1,4 @@
+// src/firebase.js
 import { getApp, getApps, initializeApp } from "firebase/app";
 import { getFirestore, collection, doc, getDoc, setDoc } from "firebase/firestore";
 import { getMessaging, getToken, onMessage } from "firebase/messaging";
