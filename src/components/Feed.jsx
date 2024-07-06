@@ -1,15 +1,6 @@
-"use client";
+// app/components/Feed.js
 
 import React, { useEffect, useState } from "react";
-import {
-  collection,
-  getDocs,
-  getFirestore,
-  orderBy,
-  query,
-  where,
-} from "firebase/firestore";
-import { app } from "../firebase"; // Adjust the path as necessary
 import Post from "./Post";
 
 export default function Feed() {
@@ -17,31 +8,13 @@ export default function Feed() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const db = getFirestore(app);
-      const postQuery = query(collection(db, "posts"), orderBy("timestamp", "desc"));
-      const postSnapshot = await getDocs(postQuery);
-
-      let fetchedData = [];
-      for (const postDoc of postSnapshot.docs) {
-        const postData = { id: postDoc.id, ...postDoc.data() };
-
-        // Fetch comments for each post
-        const commentQuery = query(
-          collection(db, "comments"),
-          where("postId", "==", postDoc.id),
-          orderBy("timestamp", "desc")
-        );
-        const commentSnapshot = await getDocs(commentQuery);
-
-        const comments = commentSnapshot.docs.map(commentDoc => ({
-          id: commentDoc.id,
-          ...commentDoc.data()
-        }));
-
-        fetchedData.push({ ...postData, comments });
+      try {
+        const response = await fetch("/api/posts");
+        const result = await response.json();
+        setData(result);
+      } catch (error) {
+        console.error("Failed to fetch data", error);
       }
-
-      setData(fetchedData);
     };
 
     fetchData();
@@ -51,7 +24,6 @@ export default function Feed() {
     <div className="mx-auto flex flex-col w-screen flex-wrap items-center ">
       {data.map((post) => (
         <div className='flex-col w-[95%] sm:w-1/2 p-3 border-b-2 border-subtle hover:bg-subtle' key={post.id}>
-
           <Post post={post} id={post.id} comments={post.comments} />
         </div>
       ))}
