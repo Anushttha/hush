@@ -14,7 +14,7 @@ import { FaShare } from "react-icons/fa6";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 
-export default function PostInteractions({ postId }) {
+export default function PostInteractions({ postId,  onToggleCommentInput  }) {
   const [comment, setComment] = useState("");
   const [loading, setLoading] = useState(false);
   const [open, setOpen] = useState(false);
@@ -27,6 +27,10 @@ export default function PostInteractions({ postId }) {
   const changeHandle = (event) => {
     setComment(event.target.value);
   };
+  const handleCommentIconClick = () => {
+    onToggleCommentInput();
+  };
+
 
   useEffect(() => {
     const unsubscribe = onSnapshot(
@@ -73,11 +77,11 @@ export default function PostInteractions({ postId }) {
         <div className="flex items-center relative">
           <HiOutlineChatBubbleLeftEllipsis
             className="h-8 w-8 text-gray cursor-pointer transition duration-500 ease-in-out p-2 "
-            onClick={() => setOpen(!open)}
+            onClick={handleCommentIconClick}
           />
 
           {comments.length > 0 && (
-            <div className="absolute top-0 right-0 bg-white text-midnight h-3 w-3 rounded-full flex items-center justify-center">
+            <div className="absolute top-[.15rem] right-[.1rem] bg-white text-midnight h-3 w-3 rounded-full flex items-center justify-center">
               <span className="text-[0.5rem] text-gray-600">
                 {comments.length}
               </span>

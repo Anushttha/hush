@@ -12,7 +12,7 @@ module.exports = {
         secondary: '#ffed4a',
         midnight: '#121212',
         subtle:'#1B1B1D',
-        light: "#fbfbfb",
+        light: "#ffffff",
         gray:"#8E8E8E",
         time:"#B2FF74",
 
