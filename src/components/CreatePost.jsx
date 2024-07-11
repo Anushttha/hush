@@ -178,14 +178,14 @@ const CreatePost = () => {
   };
 
   return (
-    <div className="flex flex-col m-5 w-[95%] sm:w-1/2 sm:m-5">
+    <div className="flex p-2 flex-col m-5 w-[95%] sm:w-1/2 sm:m-5">
       <div className="w-full mb-4 flex items-center relative">
         <textarea
           placeholder="Whats Up?"
           rows="2"
           value={caption}
           onChange={handleCaptionChange}
-          className="w-full pt-4 px-4 py-0.1 text-l text-midnight resize-flex rounded focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-50"
+          className="w-full pt-4 px-4 py-0.1 text-l text-midnight resize-flex rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-50"
         ></textarea>
         {showSuggestions && (
           <ul className="absolute top-full left-0 w-full bg-white border border-gray-300 rounded shadow-lg z-10">
@@ -202,7 +202,7 @@ const CreatePost = () => {
         )}
         <div className="flex ml-2">
           <FaFileImage
-            className="h-10 w-10 p-2 text-primary hover:bg-sky-100 rounded-full cursor-pointer"
+            className="h-10 w-10 p-2 text-light hover:text-gray rounded-full cursor-pointer"
             onClick={() => imagePickRef.current.click()}
           />
           <input
@@ -219,7 +219,7 @@ const CreatePost = () => {
               imageFileUploading ||
               caption.replace(/#\w+/g, "").trim() === ""
             }
-            className="bg-primary text-midnight ml-2 px-4 h-[35px] rounded-full font-bold shadow-md hover:brightness-95 disabled:opacity-50 disabled:text-light mt-1 flex items-center justify-center"
+            className="bg-light text-midnight  ml-2 px-4 h-[35px] rounded-full font-bold shadow-md hover:brightness-95 disabled:opacity-50 disabled:text-midnight mt-1 flex items-center justify-center"
             onClick={handleSubmit}
           >
             Post
