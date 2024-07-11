@@ -1,4 +1,4 @@
-'use client';
+"use client";
 import { useEffect, useState } from "react";
 import { addDoc } from "firebase/firestore";
 import {
@@ -53,40 +53,53 @@ export default function PostInteractions({ postId }) {
   };
 
   return (
-    <div className="flex-col ">
-     
-      < FaShare 
-          className="h-8 w-8 text-[#898FBB] cursor-pointer  transition duration-500 ease-in-out p-2 hover:text-midnight hover:bg-primary"
-         
-        />
- <div className="flex items-center relative">
-        <HiOutlineChatBubbleLeftEllipsis  
-          className="h-8 w-8 text-[#898FBB] cursor-pointer  transition duration-500 ease-in-out p-2 hover:text-midnight hover:bg-primary"
-          onClick={() => setOpen(!open)}
-        />
-        {comments.length > 0 && <span className="text-xs text-[#898FBB] ">{comments.length}</span>}
-        {open && (
-          <div className='absolute top-0 left-12 border-gray-300 p-2 shadow-lg z-10' style={{ width: '200px', top: '-9px' }}>
-            <form className="flex gap-1" onSubmit={submitHandle}>
-              <input
-                type="text"
-                placeholder="Add a comment..."
-                name="comment"
-                value={comment}
-                onChange={changeHandle}
-                required
-                className="p-1 flex-grow"
-              />
-              <button
-                type="submit"
-                disabled={loading}
-                className="bg-blue-500 text-light px-4 py-1 rounded hover:bg-blue-600"
-              >
-                {loading ? "Posting..." : "Post"}
-              </button>
-            </form>
-          </div>
-        )}
+    <div className="flex gap-2 mt-3">
+   <div className="bg-midnight h-10 w-10 flex justify-center items-center rounded-full relative">
+  <div className="flex items-center relative">
+    <HiOutlineChatBubbleLeftEllipsis
+      className="h-8 w-8 text-gray cursor-pointer transition duration-500 ease-in-out p-2 hover:text-midnight hover:bg-primary"
+      onClick={() => setOpen(!open)}
+    />
+
+    {comments.length > 0 && (
+      <div className="absolute top-0 right-0 bg-white text-midnight h-3 w-3 rounded-full flex items-center justify-center">
+        <span className="text-[0.5rem] text-gray-600">
+          {comments.length}
+        </span>
+      </div>
+    )}
+
+    {open && (
+      <div
+        className="absolute top-0 left-12 border-gray-300 p-2 shadow-lg z-10"
+        style={{ width: "200px", top: "-9px" }}
+      >
+        <form className="flex gap-1" onSubmit={submitHandle}>
+          <input
+            type="text"
+            placeholder="Add a comment..."
+            name="comment"
+            value={comment}
+            onChange={changeHandle}
+            required
+            className="p-1 flex-grow"
+          />
+          <button
+            type="submit"
+            disabled={loading}
+            className="bg-blue-500 text-light px-4 py-1 rounded hover:bg-blue-600"
+          >
+            {loading ? "Posting..." : "Post"}
+          </button>
+        </form>
+      </div>
+    )}
+  </div>
+</div>
+
+
+      <div className="bg-white h-9 w-9 flex justify-center items-center rounded-full">
+        <FaShare className="h-8 w-8 text-midnight cursor-pointer  transition duration-500 ease-in-out p-2 hover:text-midnight hover:bg-primary" />
       </div>
     </div>
   );

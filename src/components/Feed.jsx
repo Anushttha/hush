@@ -92,7 +92,7 @@ export default function Feed() {
           if (data.length === index + 1) {
             return (
               <div
-                className="flex-col w-[95%] sm:w-1/2 p-3 border-b-2 border-subtle hover:bg-subtle"
+                className="flex-col w-[95%] sm:w-1/2 p-2 "
                 key={post.id}
                 ref={lastPostRef}
               >
@@ -102,7 +102,7 @@ export default function Feed() {
           } else {
             return (
               <div
-                className="flex-col w-[95%] sm:w-1/2 p-3 border-b-2 border-subtle hover:bg-subtle"
+                className="flex-col w-[95%] sm:w-1/2 p-2  "
                 key={post.id}
               >
                 <Post post={post} id={post.id} comments={post.comments} />

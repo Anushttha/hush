@@ -10,9 +10,12 @@ module.exports = {
       colors: {
         primary: '#A5ACE1', // Example primary color
         secondary: '#ffed4a',
-        midnight: '#191A22',
-        subtle:'#22232E',
+        midnight: '#121212',
+        subtle:'#1B1B1D',
         light: "#fbfbfb",
+        gray:"#8E8E8E",
+        time:"#B2FF74",
+
         
         // Example secondary color
         // You can add more custom colors here
@@ -23,5 +26,5 @@ module.exports = {
     },
   },
   plugins: [],
-  darkMode: "class",
+  
 };

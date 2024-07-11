@@ -1,5 +1,3 @@
-"use client"
-
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
@@ -14,7 +12,7 @@ import PostInteractions from "./PostInteractions";
 
 export default function Post({ post, id, comments }) {
   const [postAge, setPostAge] = useState("");
-
+  const [isHovered, setIsHovered] = useState(false);
 
   useEffect(() => {
     const createdAt = post.timestamp.toDate(); // Convert Firestore Timestamp to Date object
@@ -24,7 +22,10 @@ export default function Post({ post, id, comments }) {
 
     let timeAgo = "";
 
-    if (seconds < 60) {
+    if (seconds < 0) {
+      timeAgo = `just now`;
+    }
+    else if (seconds < 60) {
       timeAgo = `${seconds} seconds ago`;
     } else if (seconds < 3600) {
       const minutes = Math.floor(seconds / 60);
@@ -40,8 +41,16 @@ export default function Post({ post, id, comments }) {
     setPostAge(timeAgo);
   }, [post.timestamp]);
 
+  const handleMouseEnter = () => {
+    setIsHovered(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+  };
+
   return (
-    <div>
+    <div className="bg-subtle rounded-lg p-4" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
       <Link href={`/posts/${id}`}>
         <img src={post?.image} className="rounded-lg w-[100%]  mr-2" />
       </Link>
@@ -51,24 +60,22 @@ export default function Post({ post, id, comments }) {
           <p className="text-gray-800 text-sm my-3 font-normal dark:text-light">
             {post?.caption}
           </p>
-          <p className="text-green-400 text-[0.65rem] flex items-center gap-1">
-            {" "}
-            <div className="h-2 w-2 rounded-full bg-green-400 pb-2"></div>{" "}
+          <p className="text-time text-[0.65rem] flex items-center gap-1">
+            <div className="h-2 w-2 rounded-full bg-time pb-2"></div>
             {postAge} {/* Display post age */}
           </p>
           <div className="flex text-xs gap-2 mt-4">
-            {" "}
-            <p className="bg-gray-800 text-gray-400 rounded-full px-3 py-1">
-              Batch22
-            </p>{" "}
-            <p className="bg-gray-800 text-gray-400 rounded-full px-3 py-1">
-              SOE
-            </p>{" "}
-            <p className="bg-gray-800 text-gray-400 rounded-full px-3 py-1">
-              JNU
-            </p>
+            {post?.hashtags.map((tag, index) => (
+              <p
+                key={index}
+                className={`text-gray rounded-full px-3 py-1 bg-midnight`}
+              >
+                {tag}
+              </p>
+            ))}
           </div>
         </Link>
+
         <PostInteractions postId={id} />
       </div>
     </div>
