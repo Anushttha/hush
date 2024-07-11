@@ -12,6 +12,7 @@ import { HiOutlineChatBubbleLeftEllipsis } from "react-icons/hi2";
 import { FaShare } from "react-icons/fa6";
 
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 export default function PostInteractions({ postId }) {
   const [comment, setComment] = useState("");
@@ -19,6 +20,7 @@ export default function PostInteractions({ postId }) {
   const [open, setOpen] = useState(false);
   const [comments, setComments] = useState([]);
   const router = useRouter();
+  const [isShared, setIsShared] = useState(false);
 
   const db = getFirestore(app);
 
@@ -52,55 +54,73 @@ export default function PostInteractions({ postId }) {
     }
   };
 
+  const handleShare = async () => {
+    try {
+      const postUrl = `${window.location.origin}/posts/${postId}`; // Construct the post URL
+      await navigator.clipboard.writeText(postUrl); // Copy the URL to clipboard
+      setIsShared(true); // Update shared state
+      setTimeout(() => setIsShared(false), 1000); // Hide message after 2 seconds
+      
+    } catch (error) {
+      console.error("Failed to copy:", error);
+     
+    }
+  };
+
   return (
-    <div className="flex gap-2 mt-3">
-   <div className="bg-midnight h-10 w-10 flex justify-center items-center rounded-full relative">
-  <div className="flex items-center relative">
-    <HiOutlineChatBubbleLeftEllipsis
-      className="h-8 w-8 text-gray cursor-pointer transition duration-500 ease-in-out p-2 hover:text-midnight hover:bg-primary"
-      onClick={() => setOpen(!open)}
-    />
-
-    {comments.length > 0 && (
-      <div className="absolute top-0 right-0 bg-white text-midnight h-3 w-3 rounded-full flex items-center justify-center">
-        <span className="text-[0.5rem] text-gray-600">
-          {comments.length}
-        </span>
-      </div>
-    )}
-
-    {open && (
-      <div
-        className="absolute top-0 left-12 border-gray-300 p-2 shadow-lg z-10"
-        style={{ width: "200px", top: "-9px" }}
-      >
-        <form className="flex gap-1" onSubmit={submitHandle}>
-          <input
-            type="text"
-            placeholder="Add a comment..."
-            name="comment"
-            value={comment}
-            onChange={changeHandle}
-            required
-            className="p-1 flex-grow"
+    <div className="flex-col items-center justify-center  mt-3">
+      <div className="flex gap-2">      <div className="bg-midnight h-10 w-10 flex justify-center items-center rounded-full relative">
+        <div className="flex items-center relative">
+          <HiOutlineChatBubbleLeftEllipsis
+            className="h-8 w-8 text-gray cursor-pointer transition duration-500 ease-in-out p-2 "
+            onClick={() => setOpen(!open)}
           />
-          <button
-            type="submit"
-            disabled={loading}
-            className="bg-blue-500 text-light px-4 py-1 rounded hover:bg-blue-600"
-          >
-            {loading ? "Posting..." : "Post"}
-          </button>
-        </form>
-      </div>
-    )}
-  </div>
-</div>
 
+          {comments.length > 0 && (
+            <div className="absolute top-0 right-0 bg-white text-midnight h-3 w-3 rounded-full flex items-center justify-center">
+              <span className="text-[0.5rem] text-gray-600">
+                {comments.length}
+              </span>
+            </div>
+          )}
+
+          {open && (
+            <div
+              className="absolute top-0 left-12 border-gray-300 p-2 shadow-lg z-10"
+              style={{ width: "200px", top: "-9px" }}
+            >
+              <form className="flex gap-1" onSubmit={submitHandle}>
+                <input
+                  type="text"
+                  placeholder="Add a comment..."
+                  name="comment"
+                  value={comment}
+                  onChange={changeHandle}
+                  required
+                  className="p-1 flex-grow"
+                />
+                <button
+                  type="submit"
+                  disabled={loading}
+                  className="bg-blue-500 text-light px-4 py-1 rounded hover:bg-blue-600"
+                >
+                  {loading ? "Posting..." : "Post"}
+                </button>
+              </form>
+            </div>
+          )}
+        </div>
+      </div>
 
       <div className="bg-white h-9 w-9 flex justify-center items-center rounded-full">
-        <FaShare className="h-8 w-8 text-midnight cursor-pointer  transition duration-500 ease-in-out p-2 hover:text-midnight hover:bg-primary" />
-      </div>
+        <button onClick={handleShare}>
+          <FaShare className="h-8 w-8 text-midnight cursor-pointer transition duration-500 ease-in-out p-2" />
+        </button>
+      </div></div>
+
+      {isShared && (
+        <span className="text-[.5rem] text-gray-600 ml-1 animate-blink">URL Copied!</span>
+      )}
     </div>
   );
 }

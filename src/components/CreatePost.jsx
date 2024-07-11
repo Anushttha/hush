@@ -185,7 +185,7 @@ const CreatePost = () => {
           rows="2"
           value={caption}
           onChange={handleCaptionChange}
-          className="w-full pt-4 px-4 py-0.1 text-l resize-flex rounded focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-50"
+          className="w-full pt-4 px-4 py-0.1 text-l text-midnight resize-flex rounded focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-50"
         ></textarea>
         {showSuggestions && (
           <ul className="absolute top-full left-0 w-full bg-white border border-gray-300 rounded shadow-lg z-10">
