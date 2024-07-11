@@ -4,7 +4,7 @@ import React, { useEffect, useState, useRef, useCallback } from 'react';
 import Post from './Post';
 import { getFirestore, collection, getDocs, query, where, orderBy, limit, startAfter } from 'firebase/firestore';
 import { app } from '@/firebase';
-
+ 
 export default function Feed() {
   const [data, setData] = useState([]);
   const [lastLoadedPost, setLastLoadedPost] = useState(null);

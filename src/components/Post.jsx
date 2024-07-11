@@ -1,7 +1,8 @@
-
+"use client"
 
 import Link from "next/link";
-import CreateComment from "./CreateComment";
+import { useState, useEffect } from "react";
+import { useRouter } from "next/router";
 import {
   HiOutlineChat,
   HiOutlineHeart,
@@ -9,24 +10,66 @@ import {
   HiHeart,
 } from "react-icons/hi";
 import Comments from "./Comments";
+import PostInteractions from "./PostInteractions";
 
 export default function Post({ post, id, comments }) {
+  const [postAge, setPostAge] = useState("");
+
+
+  useEffect(() => {
+    const createdAt = post.timestamp.toDate(); // Convert Firestore Timestamp to Date object
+    const now = new Date();
+    const elapsed = now - createdAt;
+    const seconds = Math.floor(elapsed / 1000);
+
+    let timeAgo = "";
+
+    if (seconds < 60) {
+      timeAgo = `${seconds} seconds ago`;
+    } else if (seconds < 3600) {
+      const minutes = Math.floor(seconds / 60);
+      timeAgo = `${minutes} minutes ago`;
+    } else if (seconds < 86400) {
+      const hours = Math.floor(seconds / 3600);
+      timeAgo = `${hours} hours ago`;
+    } else {
+      const days = Math.floor(seconds / 86400);
+      timeAgo = `${days} days ago`;
+    }
+
+    setPostAge(timeAgo);
+  }, [post.timestamp]);
+
   return (
     <div>
       <Link href={`/posts/${id}`}>
-        <img src={post?.image} className="rounded-2xl w-[100%]  mr-2" />
+        <img src={post?.image} className="rounded-lg w-[100%]  mr-2" />
       </Link>
-      <div className="flex flex-col justify-between">
-
-{/* post */}
-
+      <div className="flex justify-between">
+        {/* post */}
         <Link href={`/posts/${id}`}>
-          <p className="text-gray-800 text-sm my-3 dark:text-light">
+          <p className="text-gray-800 text-sm my-3 font-normal dark:text-light">
             {post?.caption}
           </p>
+          <p className="text-green-400 text-[0.65rem] flex items-center gap-1">
+            {" "}
+            <div className="h-2 w-2 rounded-full bg-green-400 pb-2"></div>{" "}
+            {postAge} {/* Display post age */}
+          </p>
+          <div className="flex text-xs gap-2 mt-4">
+            {" "}
+            <p className="bg-gray-800 text-gray-400 rounded-full px-3 py-1">
+              Batch22
+            </p>{" "}
+            <p className="bg-gray-800 text-gray-400 rounded-full px-3 py-1">
+              SOE
+            </p>{" "}
+            <p className="bg-gray-800 text-gray-400 rounded-full px-3 py-1">
+              JNU
+            </p>
+          </div>
         </Link>
-
-        <CreateComment postId={id} />
+        <PostInteractions postId={id} />
       </div>
     </div>
   );

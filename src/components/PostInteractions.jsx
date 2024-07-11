@@ -9,11 +9,11 @@ import {
 } from "firebase/firestore";
 import { app } from "../firebase";
 import { HiOutlineChatBubbleLeftEllipsis } from "react-icons/hi2";
-
+import { FaShare } from "react-icons/fa6";
 
 import { useRouter } from "next/navigation";
 
-export default function CreateComment({ postId }) {
+export default function PostInteractions({ postId }) {
   const [comment, setComment] = useState("");
   const [loading, setLoading] = useState(false);
   const [open, setOpen] = useState(false);
@@ -54,12 +54,17 @@ export default function CreateComment({ postId }) {
 
   return (
     <div className="flex-col ">
-      <div className="flex items-center relative">
+     
+      < FaShare 
+          className="h-8 w-8 text-[#898FBB] cursor-pointer  transition duration-500 ease-in-out p-2 hover:text-midnight hover:bg-primary"
+         
+        />
+ <div className="flex items-center relative">
         <HiOutlineChatBubbleLeftEllipsis  
           className="h-8 w-8 text-[#898FBB] cursor-pointer  transition duration-500 ease-in-out p-2 hover:text-midnight hover:bg-primary"
           onClick={() => setOpen(!open)}
         />
-        {comments.length > 0 && <span className="text-xs text-light ml-1">{comments.length}</span>}
+        {comments.length > 0 && <span className="text-xs text-[#898FBB] ">{comments.length}</span>}
         {open && (
           <div className='absolute top-0 left-12 border-gray-300 p-2 shadow-lg z-10' style={{ width: '200px', top: '-9px' }}>
             <form className="flex gap-1" onSubmit={submitHandle}>

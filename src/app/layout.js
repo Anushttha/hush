@@ -15,8 +15,7 @@ export const metadata = {
     "University-specific feeds",
     "Upvote and comment on posts",
     "Trending topics",
-    "Customizable content filters",
-    "Report inappropriate content"
+    "Customizable content filters"
   ],
   category: "Social Networking",
   keywords: [

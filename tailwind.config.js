@@ -18,14 +18,7 @@ module.exports = {
         // You can add more custom colors here
       },
       fontFamily: {
-        'neue': ['"Neue Plak Wide"', 'sans-serif'],
-        'neue-bold': ['"Neue Plak Wide Bold"', 'sans-serif'],
-        'neue-extra': ['"Neue Plak Wide Extra"', 'sans-serif'],
-        'neue-semi': ['"Neue Plak Wide Semi"', 'sans-serif'],
-        'neue-light': ['"Neue Plak Wide Light"', 'sans-serif'],
-        'neue-ultra': ['"Neue Plak Wide Ultra"', 'sans-serif'],
-        'neue-thin': ['"Neue Plak Wide Thin"', 'sans-serif'],
-        'neue-black': ['"Neue Plak Wide Black"', 'sans-serif'],
+        'neue': ['"Helvetica Neue LT Pro"', 'sans-serif']
       },
     },
   },
