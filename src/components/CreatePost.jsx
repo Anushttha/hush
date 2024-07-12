@@ -177,7 +177,7 @@ const CreatePost = () => {
   };
 
   return (
-    <div className="flex p-2 flex-col m-5 w-[95%] sm:w-1/2 sm:m-5">
+    <div className="flex p-2 flex-col m-5 w-[95%]  sm:m-5">
       <div className="w-full mb-4 flex items-center relative">
         <div className="w-full relative">
           <textarea

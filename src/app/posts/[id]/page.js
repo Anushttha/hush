@@ -2,14 +2,9 @@
 import { useEffect, useState } from "react";
 import { app } from "../../../firebase";
 import { doc, getDoc, getFirestore } from "firebase/firestore";
-import { HiArrowLeft } from "react-icons/hi";
 import Link from "next/link";
-import { BsChatSquareDots } from "react-icons/bs";
-import { IoIosShareAlt } from "react-icons/io";
-import Comment from "@/components/Comment";
-import Comments from "@/components/Comments";
-import PostInteractions from "@/components/PostInteractions";
 import { IoIosArrowBack } from "react-icons/io";
+import Comments from "@/components/Comments";
 import PostInteractionsPostPage from "@/components/PostInteractionsPostPage";
 
 export default function PostPage({ params }) {
@@ -23,7 +18,6 @@ export default function PostPage({ params }) {
         const querySnapshot = await getDoc(doc(db, "posts", params.id));
         if (querySnapshot.exists()) {
           const postData = querySnapshot.data();
-          // Assuming `timestamp` is a Firestore Timestamp field in your document
           setPost({
             ...postData,
             id: querySnapshot.id,
@@ -73,24 +67,26 @@ export default function PostPage({ params }) {
   }
 
   return (
-    <div className="">
+    <div className="w-full max-w-2xl">
       <Link
         href={"/"}
-        className="bg-midnight h-10 w-10 rounded-full flex items-center justify-center top-8 left-2  fixed"
+        className={`bg-midnight h-10 w-10 rounded-full flex items-center justify-center top-8 left-2 absolute ${!post.image ? "mt-4" : ""}`}
       >
         <IoIosArrowBack className="h-5 text-light w-5 mr-[0.15rem]" />
       </Link>
 
-      <div>
-        <img src={post?.image} className=" w-[100%]  mr-2" />
-      </div>
-      <div className="flex mx-3 justify-between items-center">
+      {post.image ? (
+        <div>
+          <img src={post.image} className="w-[100%] mr-2" />
+        </div>
+      ) : (
+        <div className="pt-16"></div>
+      )}
+
+      <div className="flex  mx-3 justify-between items-center">
         <div className="flex text-xs gap-2 mt-4">
-          {post?.hashtags.map((tag, index) => (
-            <p
-              key={index}
-              className="text-gray rounded-full px-3 py-1 bg-subtle"
-            >
+          {post.hashtags.map((tag, index) => (
+            <p key={index} className="text-gray rounded-full px-3 py-1 bg-subtle">
               {tag}
             </p>
           ))}
@@ -106,12 +102,11 @@ export default function PostPage({ params }) {
 
       <div>
         <div>
-          <div className="text-lg m-4 text-light">{post?.caption}</div>
+          <div className="text-lg m-4 text-light">{post.caption}</div>
         </div>
 
         <div>
-          
-          <Comments  id={params.id} />
+          <Comments id={params.id} />
         </div>
 
         <PostInteractionsPostPage postId={params.id} />

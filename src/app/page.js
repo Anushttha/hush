@@ -12,7 +12,7 @@ export default async function Page() {
   return (
     <>
      <Header />
-      <NotificationPermission />
+    
       <CreatePost />
      <Feed />
     </>

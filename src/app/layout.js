@@ -1,5 +1,3 @@
-
-
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
@@ -9,13 +7,14 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata = {
   appName: "Hush",
   shortDescription: "Anonymous JNU secrets and confessions.",
-  longDescription: "Hush is the go-to app for JNU students to share and discover campus secrets, confessions, and anonymous thoughts. Connect with your college community in a safe, private space where you can express yourself freely.",
+  longDescription:
+    "Hush is the go-to app for JNU students to share and discover campus secrets, confessions, and anonymous thoughts. Connect with your college community in a safe, private space where you can express yourself freely.",
   keyFeatures: [
     "100% anonymous posting",
     "University-specific feeds",
     "Upvote and comment on posts",
     "Trending topics",
-    "Customizable content filters"
+    "Customizable content filters",
   ],
   category: "Social Networking",
   keywords: [
@@ -28,18 +27,20 @@ export const metadata = {
     "social",
     "community",
     "private",
-    "safe"
+    "safe",
   ],
-  ageRating: "17+"
+  ageRating: "17+",
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`font-neue bg-midnight text-light  `}>
-        <div className=" flex-col flex items-center ">
-         
-          {children}
+      <body className={`font-neue bg-midnight text-light`}>
+        <div className="flex justify-center min-h-screen bg-gray-100">
+          <div className="w-full max-w-2xl ">
+            
+            {children}
+          </div>
         </div>
       </body>
     </html>
