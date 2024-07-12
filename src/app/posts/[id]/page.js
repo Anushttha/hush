@@ -106,7 +106,7 @@ export default function PostPage({ params }) {
 
       <div>
         <div>
-          <div className=" m-3 text-light">{post?.caption}</div>
+          <div className="text-lg m-4 text-light">{post?.caption}</div>
         </div>
 
         <div>

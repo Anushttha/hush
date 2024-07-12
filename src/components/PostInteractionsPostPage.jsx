@@ -88,7 +88,7 @@ export default function PostInteractionsPostPage({ postId }) {
   }, [ref]);
 
   return (
-    <div className="w-full fixed bottom-4">
+    <div className=" fixed bottom-4">
       <div ref={ref} className="items-center justify-center w-full   mt-3">
         <div className="flex justify-center items-center  gap-2">
           {" "}
@@ -100,13 +100,7 @@ export default function PostInteractionsPostPage({ postId }) {
                 onClick={handleCommentIconClick}
               />
 
-              {comments.length > 0 && (
-                <div className="absolute top-[.15rem] right-[.1rem] bg-white text-midnight h-3 w-3 rounded-full flex items-center justify-center">
-                  <span className="text-[0.5rem] text-gray-600">
-                    {comments.length}
-                  </span>
-                </div>
-              )}
+             
             </div>
           </div>) : (
             <div className="w-[60%]">
