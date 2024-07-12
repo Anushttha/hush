@@ -38,7 +38,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={`font-neue bg-midnight text-light  `}>
         <div className=" flex-col flex items-center ">
-          <Header />
+         
           {children}
         </div>
       </body>

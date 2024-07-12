@@ -22,11 +22,11 @@ export default function Comment({ comment, commentId, originalPostId }) {
 
 
   return (
-    <div className='flex p-4 border-b border-subtle hover:bg-subtle pl-10'>
+    <div className=' text-gray flex p-4 border-b border-subtle hover:bg-subtle pl-10'>
 
 
 
-      <p className='text-light text-xs my-3'> - {comment?.comment}</p>
+      <p className=' text-xs my-2'> - {comment?.comment}</p>
 
 
     </div>

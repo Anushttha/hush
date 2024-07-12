@@ -124,26 +124,26 @@ const CreatePost = () => {
 
   const handleSubmit = async () => {
     setPostLoading(true);
-  
+
     // Extract hashtags from the caption
     const hashtags = caption.match(/#\w+/g) || [];
-  
+
     // Remove hashtags from the caption
     const cleanedCaption = caption.replace(/#\w+/g, "").trim();
-  
+
     const docRef = await addDoc(collection(db, "posts"), {
       caption: cleanedCaption,
-      hashtags: hashtags.map(tag => tag.substring(1)), // Remove '#' symbol from each hashtag
+      hashtags: hashtags.map((tag) => tag.substring(1)), // Remove '#' symbol from each hashtag
       image: imageFileURL,
       timestamp: serverTimestamp(),
     });
-  
+
     const newPost = {
       caption: cleanedCaption,
-      hashtags: hashtags.map(tag => tag.substring(1)), // Remove '#' symbol from each hashtag
+      hashtags: hashtags.map((tag) => tag.substring(1)), // Remove '#' symbol from each hashtag
       image: imageFileURL,
     };
-  
+
     sendNotification(newPost);
     console.log(newPost);
     setPostLoading(false);
@@ -152,7 +152,6 @@ const CreatePost = () => {
     setSelectedFile(null);
     location.reload();
   };
-  
 
   const handleCaptionChange = (e) => {
     const value = e.target.value;
@@ -180,15 +179,16 @@ const CreatePost = () => {
   return (
     <div className="flex p-2 flex-col m-5 w-[95%] sm:w-1/2 sm:m-5">
       <div className="w-full mb-4 flex items-center relative">
-        <textarea
-          placeholder="Whats Up?"
-          rows="2"
-          value={caption}
-          onChange={handleCaptionChange}
-          className="w-full pt-4 px-4 py-0.1 text-l text-midnight resize-flex rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-50"
-        ></textarea>
-        {showSuggestions && (
-          <ul className="absolute top-full left-0 w-full bg-white border border-gray-300 rounded shadow-lg z-10">
+        <div className="w-full relative">
+          <textarea
+            placeholder="Whats Up?"
+            rows="2"
+            value={caption}
+            onChange={handleCaptionChange}
+            className="w-full pt-4 px-4 py-0.1 text-l text-midnight resize-none rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-50"
+          ></textarea>
+          {showSuggestions && (
+            <ul className="absolute top-full left-0 w-full bg-white bg-opacity-40 text-midnight border border-gray-300 rounded-lg shadow-lg backdrop-filter backdrop-blur z-10">
             {filteredHashtags.map((tag, index) => (
               <li
                 key={index}
@@ -199,7 +199,10 @@ const CreatePost = () => {
               </li>
             ))}
           </ul>
-        )}
+          
+          )}
+        </div>
+  
         <div className="flex ml-2">
           <FaFileImage
             className="h-10 w-10 p-2 text-light hover:text-gray rounded-full cursor-pointer"
@@ -219,7 +222,7 @@ const CreatePost = () => {
               imageFileUploading ||
               caption.replace(/#\w+/g, "").trim() === ""
             }
-            className="bg-light text-midnight  ml-2 px-4 h-[35px] rounded-full font-bold shadow-md hover:brightness-95 disabled:opacity-50 disabled:text-midnight mt-1 flex items-center justify-center"
+            className="bg-light text-midnight ml-2 px-4 h-[35px] rounded-full font-bold shadow-md hover:brightness-95 disabled:opacity-50 disabled:text-midnight mt-1 flex items-center justify-center"
             onClick={handleSubmit}
           >
             Post
@@ -231,13 +234,15 @@ const CreatePost = () => {
           <img
             src={imageFileURL}
             alt={selectedFile}
-            className={`w-full max-h-[250px] object-cover cursor-pointer
-          ${imageFileUploading ? "animate-pulse" : ""}`}
+            className={`w-full max-h-[250px] object-cover cursor-pointer ${
+              imageFileUploading ? "animate-pulse" : ""
+            }`}
           />
         </div>
       )}
     </div>
   );
+  
 };
 
 export default CreatePost;

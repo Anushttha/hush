@@ -26,7 +26,7 @@ export default function Comments({ id }) {
     );
   }, [db, id]);
   return (
-    <div>
+    <div >
       {comments.map((comment) => (
         <Comment
           key={comment.id}
